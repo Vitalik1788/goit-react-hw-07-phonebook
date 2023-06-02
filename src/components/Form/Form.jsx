@@ -10,7 +10,7 @@ import {
 } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
-// import { addUserContact } from '../../redux/contactsReducer';
+import { addContact } from 'redux/operations';
 
 const Form = () => {
   const [name, setName] = useState('');
@@ -26,12 +26,12 @@ const Form = () => {
 
   const onSubmitForm = e => {
     e.preventDefault();
-
     const contact = {
       id: nanoid(),
       name,
       number,
     };
+
     const normalizedName = name.toLowerCase().trim();
     if (
       contacts !== null &&
@@ -39,7 +39,7 @@ const Form = () => {
     ) {
       return alert(`${name} is already in contacts!`);
     }
-    // dispatch(addUserContact(contact));
+    dispatch(addContact(contact));
     reset();
   };
 
