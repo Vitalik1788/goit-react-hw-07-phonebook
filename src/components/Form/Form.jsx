@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   FormContainer,
   NameFormLabel,
@@ -37,6 +39,7 @@ const Form = () => {
       return alert(`${name} is already in contacts!`);
     }
     dispatch(addContact(contact));
+    toast.success('Contact was added in your Phonebook')
     reset();
   };
 
@@ -68,6 +71,18 @@ const Form = () => {
       />
 
       <FormSubmitBtn type="submit">Add contact</FormSubmitBtn>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </FormContainer>
   );
 };

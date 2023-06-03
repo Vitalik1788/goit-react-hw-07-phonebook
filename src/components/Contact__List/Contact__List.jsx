@@ -1,17 +1,31 @@
 import { ContactItem, DeleteBtn } from './Contact__List.styled';
 import { BsFillBookmarkCheckFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { deleteContact } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { selectFilter, selectContacts } from 'redux/selectors';
 
 const ContactsList = () => {
   const dispatch = useDispatch();
-  const filteredContacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+  const items = useSelector(selectContacts);
 
+  const selectVisibleContacts = () => {
+  if (items.length === 0) {
+    return;
+  }
+  const normalizedFilter = filter.toLowerCase().trim();
+  return items.filter(item =>
+    item.name.toLowerCase().includes(normalizedFilter)
+  );
+};
+
+  const userFilteredContacts = selectVisibleContacts();
+  
   return (
     <ul>
-      {filteredContacts &&
-        filteredContacts.map(({ id, name, phone }) => {
+      {userFilteredContacts &&
+        userFilteredContacts.map(({ id, name, phone }) => {
           return (
             <ContactItem key={id}>
               <BsFillBookmarkCheckFill
@@ -20,7 +34,7 @@ const ContactsList = () => {
               {name}: {phone}
               <DeleteBtn
                 type="button"
-                onClick={() => dispatch(deleteContact(id))}
+                onClick={() => { dispatch(deleteContact(id)); toast.success('Contact was delete') }}
               >
                 Delete
               </DeleteBtn>
