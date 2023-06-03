@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
 import {
   FormContainer,
   NameFormLabel,
@@ -14,22 +13,20 @@ import { addContact } from 'redux/operations';
 
 const Form = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
- 
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   const onSubmitForm = e => {
     e.preventDefault();
     const contact = {
-      id: nanoid(),
       name,
-      number,
+      phone,
     };
 
     const normalizedName = name.toLowerCase().trim();
@@ -62,12 +59,12 @@ const Form = () => {
         id="number"
         type="tel"
         name="number"
-        value={number}
+        value={phone}
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
         placeholder="Enter phone number"
-        onChange={e => setNumber(e.currentTarget.value)}
+        onChange={e => setPhone(e.currentTarget.value)}
       />
 
       <FormSubmitBtn type="submit">Add contact</FormSubmitBtn>

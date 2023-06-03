@@ -14,3 +14,5 @@ export const selectVisibleContacts = ({ items, filter }) => {
     item.name.toLowerCase().includes(normalizedFilter)
   );
 };
+
+

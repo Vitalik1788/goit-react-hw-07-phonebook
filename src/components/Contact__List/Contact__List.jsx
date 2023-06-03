@@ -1,13 +1,13 @@
 import { ContactItem, DeleteBtn } from './Contact__List.styled';
 import { BsFillBookmarkCheckFill } from 'react-icons/bs';
-// import { removeUserContact } from 'redux/contactsReducer';
-import {  useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
 
 const ContactsList = () => {
-  // const dispatch = useDispatch();
-  const filteredContacts = useSelector(selectContacts);  
-  
+  const dispatch = useDispatch();
+  const filteredContacts = useSelector(selectContacts);
+
   return (
     <ul>
       {filteredContacts &&
@@ -20,7 +20,7 @@ const ContactsList = () => {
               {name}: {phone}
               <DeleteBtn
                 type="button"
-                // onClick={() => dispatch(removeUserContact(id))}
+                onClick={() => dispatch(deleteContact(id))}
               >
                 Delete
               </DeleteBtn>
