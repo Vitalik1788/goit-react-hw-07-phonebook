@@ -3,12 +3,13 @@ import { BsFillBookmarkCheckFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { deleteContact } from 'redux/operations';
-import { selectFilter, selectContacts } from 'redux/selectors';
+import { selectFilter, selectContacts, selectError } from 'redux/selectors';
 
 const ContactsList = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
   const items = useSelector(selectContacts);
+  const error = useSelector(selectError);
 
   const selectVisibleContacts = () => {
   if (items.length === 0) {
@@ -24,7 +25,7 @@ const ContactsList = () => {
   
   return (
     <ul>
-      {userFilteredContacts &&
+      {userFilteredContacts && !error &&
         userFilteredContacts.map(({ id, name, phone }) => {
           return (
             <ContactItem key={id}>

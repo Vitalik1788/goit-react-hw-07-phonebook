@@ -5,6 +5,8 @@ import Filter from './Filter/Filter';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
+import { SetError } from './Error/Error';
+import Spiner from './Spinner/Spinner';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,8 @@ const App = () => {
       <ContactListTitle> My contacts list</ContactListTitle>
       <Filter />
       <ContactsList />
+      <SetError />
+      <Spiner />
     </Container>
   );
 };
