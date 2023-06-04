@@ -1,7 +1,6 @@
 import { ContactItem, DeleteBtn } from './Contact__List.styled';
 import { BsFillBookmarkCheckFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { deleteContact } from 'redux/operations';
 import { selectFilter, selectContacts, selectError } from 'redux/selectors';
 
@@ -35,7 +34,7 @@ const ContactsList = () => {
               {name}: {phone}
               <DeleteBtn
                 type="button"
-                onClick={() => { dispatch(deleteContact(id)); toast.success('Contact was delete') }}
+                onClick={() => dispatch(deleteContact(id))}
               >
                 Delete
               </DeleteBtn>

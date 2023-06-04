@@ -10,15 +10,13 @@ import {
   FormNumberInput,
 } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 import { addContact } from 'redux/operations';
 
 const Form = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const contacts = useSelector(selectContacts);
-  const error = useSelector(selectError);
-  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   const reset = () => {
@@ -38,12 +36,9 @@ const Form = () => {
       contacts !== null &&
       contacts.find(contact => contact.name.toLowerCase() === normalizedName)
     ) {
-      return alert(`${name} is already in contacts!`);
+      return toast.error(`${name} is already in contacts!`);
     }
     dispatch(addContact(contact));
-    if (!isLoading && !error) {
-      toast.success('Contact was added in your Phonebook');
-    }
     reset();
   };
 

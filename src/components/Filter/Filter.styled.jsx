@@ -7,9 +7,11 @@ export const FilterLabel = styled.label`
 `
 
 export const FilterInput = styled.input`
+  padding-left: 10px;
   margin-top: 15px;
   display: block;
   max-width: 300px;
   font-size: 18px;
-
+  border-radius: 15px;
+  border-color: blue;
 `

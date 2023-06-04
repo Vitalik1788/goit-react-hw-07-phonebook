@@ -13,10 +13,14 @@ export const NameFormLabel = styled.label`
 
 export const FormNameInput = styled.input`
   display: block;
+  padding-left: 10px;
   max-width: 300px;
   margin-bottom: 15px;
   font-size: 18px;
-`
+  border-radius: 15px;
+  border-color: blue;
+`;
+
 export const NumberFormLabel =  styled.label`
   margin-bottom: 15px;
   font-size: 24px;
@@ -24,10 +28,13 @@ export const NumberFormLabel =  styled.label`
 `
 export const FormNumberInput = styled.input`
   display: block;
+  padding-left: 10px;
   max-width: 300px;
   margin-bottom: 15px;
   font-size: 18px;
-`
+  border-radius: 15px;
+  border-color: blue;
+`;
 
 export const FormSubmitBtn = styled.button`
   display: block;

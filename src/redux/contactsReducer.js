@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
+import { toast } from 'react-toastify';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -37,6 +38,7 @@ const contactsReducer = createSlice({
       state.isLoading = false;
       state.error = null;
       state.items.push(action.payload);
+      toast.success('Contact was added in your Phonebook');
     },
 
     [deleteContact.fulfilled](state, action) {
@@ -46,6 +48,7 @@ const contactsReducer = createSlice({
         task => task.id === action.payload.id
       );
       state.items.splice(index, 1);
+      toast.success('Contact was delete from yuour phonebook');
     },
   },
 });

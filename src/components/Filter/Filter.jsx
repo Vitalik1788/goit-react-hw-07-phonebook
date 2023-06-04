@@ -15,6 +15,7 @@ const Filter = () => {
         type="text"
         value={value}
         onChange={e => dispatch(changeFilter(e.currentTarget.value))}
+        placeholder='Enter name to find'
       />
     </FilterLabel>
   );
