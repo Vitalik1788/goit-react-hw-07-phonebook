@@ -2,25 +2,12 @@ import { ContactItem, DeleteBtn } from './Contact__List.styled';
 import { BsFillBookmarkCheckFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/operations';
-import { selectFilter, selectContacts, selectError } from 'redux/selectors';
+import { selectError, selectVisibleContacts } from 'redux/selectors';
 
 const ContactsList = () => {
-  const dispatch = useDispatch();
-  const filter = useSelector(selectFilter);
-  const items = useSelector(selectContacts);
+  const dispatch = useDispatch(); 
   const error = useSelector(selectError);
-
-  const selectVisibleContacts = () => {
-  if (items.length === 0) {
-    return;
-  }
-  const normalizedFilter = filter.toLowerCase().trim();
-  return items.filter(item =>
-    item.name.toLowerCase().includes(normalizedFilter)
-  );
-};
-
-  const userFilteredContacts = selectVisibleContacts();
+  const userFilteredContacts = useSelector(selectVisibleContacts);
   
   return (
     <ul>
